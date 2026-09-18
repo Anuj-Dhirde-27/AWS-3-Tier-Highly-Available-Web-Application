@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AWS Shop</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<nav>
+  <a class="brand" href="{{ url_for('index') }}">AWS Shop</a>
+  <div>
+    <a href="{{ url_for('index') }}">Products</a>
+    <a href="{{ url_for('cart') }}">Cart</a>
+    {% if user %}
+      <a href="{{ url_for('orders_page') }}">Orders</a>
+      {% if user.role == "admin" %}<a href="{{ url_for('admin') }}">Admin</a>{% endif %}
+      <span class="user">Hi, {{ user.email }}</span>
+      <a href="{{ url_for('logout') }}">Logout</a>
+    {% else %}
+      <a href="{{ url_for('login') }}">Login</a>
+    {% endif %}
+  </div>
+</nav>
+
+<main class="container">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="flash {{ category }}">{{ message }}</div>
+    {% endfor %}
+  {% endwith %}
+  {% block content %}{% endblock %}
+</main>
+</body>
+</html>

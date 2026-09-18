@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Admin Dashboard</h2>
+<h3>Inventory</h3>
+<table>
+<tr><th>Product</th><th>Current Stock</th><th>Update</th></tr>
+{% for p in products %}
+<tr>
+  <td>{{ p.name }}</td>
+  <td>{{ p.stock }}</td>
+  <td>
+    <form method="post" action="{{ url_for('update_stock', product_id=p.id) }}">
+      <input type="number" name="stock" min="0" value="{{ p.stock }}">
+      <button type="submit">Save</button>
+    </form>
+  </td>
+</tr>
+{% endfor %}
+</table>
+
+<h3>Orders</h3>
+{% if orders %}
+{% for order in orders %}
+<div class="card">
+  <strong>Order #{{ order.id }}</strong> — {{ order.user.email }} — {{ order.status }}
+  <p>Total: ₹{{ "{:,.0f}".format(order.total) }}</p>
+</div>
+{% endfor %}
+{% else %}
+<p>No orders yet.</p>
+{% endif %}
+{% endblock %}
