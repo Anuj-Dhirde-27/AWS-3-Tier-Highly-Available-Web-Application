@@ -4,7 +4,7 @@ A traditional three-tier e-commerce application deployed on AWS to demonstrate h
 
 ## Demo Video
 
-[🎬 Watch the Demo Video](INSERT_GDRIVE_LINK_HERE)
+[🎬 Watch the Demo Video](https://drive.google.com/file/d/1__2uEX98ZAc1VxfLC-KJAcD2N2Iml1az/view?usp=sharing)
 
 ## Project Highlights
 
